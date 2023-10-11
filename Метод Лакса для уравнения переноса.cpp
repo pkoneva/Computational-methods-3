@@ -59,7 +59,7 @@ int main() {
 		}
 		fout << "\n";
 	}
-	fout << "Погрешность порядка "<<t+h<<"\nПогрешность S = " << S;
+	fout << "Error of order "<<t+h<<"\nError S = " << S;
 	free(U);
 	free(U_next);
 	fout.close();
