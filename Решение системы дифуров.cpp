@@ -35,10 +35,10 @@ double fi(double x, double y) {
 	return sin(x) + cos(2 * x * y);
 }
 double A(double y01, double y11, double y21, double y10, double y12, double h) {
-	return (a * (y01 - 2 * y11 + y21) + b * (y10 - 2 * y11 + y12)) /*/ pow(h, 2)*/;
+	return (a * (y01 - 2 * y11 + y21) + b * (y10 - 2 * y11 + y12)) ;
 }
 
-/*Y_next[i][j] = A * (Y[i - 1][j] - 2 * Y[i][j] + Y[i + 1][j]) + B * (Y[i][j - 1] - 2 * Y[i][j] + Y[i][j + 1]);*/
+
 void AY(double** y, double** yn, int M) {
 	double h = pow(M, -1);
 	
@@ -72,7 +72,7 @@ int main() {
 	fin >> h >> e;
 	int M = int(1 / h) - 2;
 	int n = 0;
-	//çàäàíèå âñåõ ìàòðèö
+	//Ð·Ð°Ð´Ð°Ð½Ð¸Ðµ Ð²ÑÐµÑ… Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†
 	double** yn = new double* [M + 1];
 	double** y = new double* [M + 1];
 	double** Ay = new double* [M + 1];
@@ -105,22 +105,15 @@ int main() {
 	double t;
 	double dif = e + 1, norma = 0, nor = 0;
 	while (dif > e) {
-
 		n++;
 		norm(y, M);
-		
 		AY(y, Ay, M);
 		for (int j = 0; j <= M; j++) {
 			for (int i = 0; i <= M; i++)
 				err[i][j] = Ay[i][j] - F[i][j];
-
 		}
 		
 		AY(err, Aerr, M);
-		/*for (int j = 0; j <= M; j++) {
-			for (int i = 0; i <= M; i++)
-				Ay[i][j] = pow(h,2)*err[i][j];
-		}*/
 		t = scalar_mult(err, err, M) / scalar_mult(Aerr, err, M);
 
 		for (int j = 0; j <=M; j++) {
@@ -137,12 +130,12 @@ int main() {
 				
 			}
 		}
-		dif = h /** h */* fabs(t) * sqrt(nor);
+		dif = h * fabs(t) * sqrt(nor);
 	};
 
 	for (int j = 0; j <= M; j++) {
 		for (int i = 0; i <= M; i++)
-			F[i][j] = fi((i + 1) * h, (j + 1) * h);;//?
+			F[i][j] = fi((i + 1) * h, (j + 1) * h);;
 	}
 	for (int i = 0; i <= M; i++)
 		for (int j = 0; j <= M; j++) {
