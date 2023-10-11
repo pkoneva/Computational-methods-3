@@ -36,7 +36,7 @@ int main() {
 	M = 1+(1 / h);
     double coef = 0.027*t/pow(h, 2); 
 	double *U = (double*)calloc(M, sizeof(double));
-	double *U_next = (double*)calloc(M, sizeof(double)); // следующий слой
+	double *U_next = (double*)calloc(M, sizeof(double)); // РЎР»РµРґСѓСЋС‰РёР№ СЃР»РѕР№
     
     for (int i = 0; i < M; i++) {  // U(x, 0)
 		U[i] = u(i * h, 0.0);
@@ -61,7 +61,7 @@ int main() {
 		}
 		fout << "\n";
 	}
-	fout << "Погрешность S = " << S;
+	fout << "ГЏГ®ГЈГ°ГҐГёГ­Г®Г±ГІГј S = " << S;
 	free(U);
 	free(U_next);
 	fin.close();
